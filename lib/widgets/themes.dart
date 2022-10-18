@@ -3,7 +3,7 @@
 class MyTheme {
   static ThemeData get lighttheme =>
       ThemeData(
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             color: Colors.white,
             elevation: 0.0,
 
