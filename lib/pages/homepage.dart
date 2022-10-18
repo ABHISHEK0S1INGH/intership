@@ -12,6 +12,23 @@ class HomePage extends StatelessWidget {
           title: const Text('Internship Tracker RECB',style: TextStyle(color: Colors.grey),
           ),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_rounded),
+              label: 'UPDATE PROFILE',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.tag_sharp),
+              label: 'OPPORTUNITY',
+            ),
+          ],
+          selectedItemColor: Colors.amber[800],
+        ),
         drawer:const MyDrawer(),
         body: SafeArea(
           child: Container(
@@ -20,7 +37,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }
