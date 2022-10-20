@@ -1,42 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:recb/pages/myprofilepage.dart';
+import 'package:recb/pages/opportunitypage.dart';
+import 'package:recb/pages/searchpage.dart';
+import 'package:recb/pages/settingpage.dart';
 import 'package:recb/widgets/drawer.dart';
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentIndex =0;
+  final Screen = [
+       const Center(child: Text('home'),),
+       const Searchpage(),
+       const Opportunitypage(),
+       const Settingpage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.white,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Internship Tracker RECB',style: TextStyle(color: Colors.grey),
-          ),
+          backgroundColor: Colors.teal,
+          title: const Text('internship tracker'),
+          centerTitle: true,
         ),
+        body: Screen [currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          selectedItemColor: Colors.teal,
+          unselectedItemColor: Colors.grey,
+          currentIndex: currentIndex,
+          onTap: (index) => setState(() => currentIndex = index),
+          items:  const <BottomNavigationBarItem>[BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_box_rounded),
-              label: 'UPDATE PROFILE',
+              icon: Icon(Icons.search),
+              label: 'SEARCH',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.tag_sharp),
               label: 'OPPORTUNITY',
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'SETTINGS',
+            ),
           ],
-          selectedItemColor: Colors.amber[800],
         ),
         drawer:const MyDrawer(),
-        body: SafeArea(
-          child: Container(
-              color: Colors.blueAccent,
-              child: const Text('Home page ')
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }
+
+
+
+
+

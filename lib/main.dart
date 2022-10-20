@@ -4,7 +4,13 @@ import 'pages/loginpage.dart';
 import 'pages/homepage.dart';
 import 'utills/routes.dart';
 import 'widgets/drawer.dart';
-
+import 'pages/myprofilepage.dart';
+import 'pages/aboutpage.dart';
+import 'pages/helppage.dart';
+import 'pages/opportunitypage.dart';
+import 'pages/searchpage.dart';
+import 'pages/settingpage.dart';
+import 'pages/updateprofilepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,11 +25,20 @@ class MyApp extends StatelessWidget {
         theme: MyTheme.lighttheme,
       darkTheme: MyTheme.darktheme,
       debugShowCheckedModeBanner: false,
-            routes: {
-              "/":(context)=> Loginpage(),
-              MyRoutes.homeRoutes:(context)=> HomePage(),
-              MyRoutes.loginRoutes:(context)=> Loginpage()
+           initialRoute: '/home',
 
+            routes: {
+              "/":(context)=> const Loginpage(),
+              "/about":(context) => const Aboutpage(),
+              '/setting':(context) =>  const Settingpage(),
+              '/drawer':(context) => const MyDrawer(),
+             '/home':(context)=> const HomePage(),
+              MyRoutes.loginRoutes:(context)=> const Loginpage(),
+              MyRoutes.MyProfileRoutes:(context)=>const MyProfile(),
+              MyRoutes.HelpRoutes:(context)=> const Helppage(),
+              MyRoutes.OpportunityRoutes:(context)=>const Opportunitypage(),
+              MyRoutes.SearchRoutes:(context)=>const Searchpage(),
+              MyRoutes.updateprofileRoutes:(context)=>const Updateprofile(),
 
     },
     ) ;
