@@ -18,15 +18,12 @@ class _LoginpageState extends State<Loginpage> {
       setState(() {
         changebutton = true;
       });
-
       Navigator.pushNamed(context, MyRoutes.homeRoutes);
     }
-
     setState(() {
       changebutton = false;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,7 +88,6 @@ class _LoginpageState extends State<Loginpage> {
                       } else if (value.length < 6) {
                         return "Password should be at least 6 character ";
                       }
-
                       return null;
                     },
                   ),

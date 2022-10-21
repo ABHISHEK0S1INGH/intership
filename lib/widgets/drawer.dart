@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:recb/utills/routes.dart';
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
-
   @override
   State<MyDrawer> createState() => _MyDrawerState();
 }
@@ -12,18 +10,13 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     const imageUrl = "https://i.pinimg.com/474x/b5/8e/0d/b58e0de519e4b64817e353f683b5dfc2--birds--cute-birds.jpg";
     return Drawer(
-
       child: Container(
-
         color: Colors.blue,
         child: ListView(
           children: [
              const DrawerHeader(
-
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
-
-
                 arrowColor: Colors.black,
                 accountName:Text("USER"
               ),
@@ -34,16 +27,12 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
               ),
-
             const ListTile(
-
-
               leading: Icon(CupertinoIcons.home,color: Colors.white),
               title: Text('HOME',textScaleFactor: 1.2,style: TextStyle(color: Colors.white,
               ),
               ),
             ),
-
             const ListTile(
               leading: Icon(CupertinoIcons.dot_radiowaves_left_right,color: Colors.white),
               title: Text('DISCOVER',textScaleFactor: 1.2,style: TextStyle(color: Colors.white,
@@ -66,14 +55,12 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
             ),
             const ListTile(
-
               leading: Icon(CupertinoIcons.scope,color: Colors.white),
               title: Text('NEW OPPORTUNITY',textScaleFactor: 1.2,style: TextStyle(color: Colors.white,
               ),
               ),
             ),
             const ListTile(
-
               leading: Icon(CupertinoIcons.info,color: Colors.white),
               title: Text('ABOUT',textScaleFactor: 1.2,style: TextStyle(color: Colors.white,
               ),

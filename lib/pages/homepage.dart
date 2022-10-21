@@ -3,7 +3,7 @@ import 'package:recb/pages/myprofilepage.dart';
 import 'package:recb/pages/opportunitypage.dart';
 import 'package:recb/pages/searchpage.dart';
 import 'package:recb/pages/settingpage.dart';
-import 'package:recb/widgets/drawer.dart';
+import 'package:recb/pages/updateprofilepage.dart';
 class HomePage extends StatefulWidget {
    const HomePage({super.key});
 
@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   final Screen = [
        const Center(child: Text('home'),),
        const Searchpage(),
+       const Updateprofile(),
        const Opportunitypage(),
        const Settingpage(),
   ];
@@ -44,6 +45,10 @@ class _HomePageState extends State<HomePage> {
               label: 'SEARCH',
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_rounded),
+              label: 'UPDATE',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.tag_sharp),
               label: 'OPPORTUNITY',
             ),
@@ -53,7 +58,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        drawer:const MyDrawer(),
+       // drawer:const MyDrawer(),
             ),
           );
   }

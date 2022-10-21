@@ -11,35 +11,30 @@ import 'pages/opportunitypage.dart';
 import 'pages/searchpage.dart';
 import 'pages/settingpage.dart';
 import 'pages/updateprofilepage.dart';
-
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       themeMode: ThemeMode.dark,
         theme: MyTheme.lighttheme,
       darkTheme: MyTheme.darktheme,
       debugShowCheckedModeBanner: false,
            initialRoute: '/home',
-
             routes: {
               "/":(context)=> const Loginpage(),
-              "/about":(context) => const Aboutpage(),
+            //  "/about":(context) => const Aboutpage(),
               '/setting':(context) =>  const Settingpage(),
-              '/drawer':(context) => const MyDrawer(),
+             // '/drawer':(context) => const MyDrawer(),
              '/home':(context)=> const HomePage(),
-              MyRoutes.loginRoutes:(context)=> const Loginpage(),
-              MyRoutes.MyProfileRoutes:(context)=>const MyProfile(),
-              MyRoutes.HelpRoutes:(context)=> const Helppage(),
-              MyRoutes.OpportunityRoutes:(context)=>const Opportunitypage(),
-              MyRoutes.SearchRoutes:(context)=>const Searchpage(),
-              MyRoutes.updateprofileRoutes:(context)=>const Updateprofile(),
-
+             // MyRoutes.loginRoutes:(context)=> const Loginpage(),
+             // MyRoutes.MyProfileRoutes:(context)=>const MyProfile(),
+             // MyRoutes.HelpRoutes:(context)=> const Helppage(),
+              '/opportunity':(context)=>const Opportunitypage(),
+            '/search':(context)=>const Searchpage(),
+             // MyRoutes.updateprofileRoutes:(context)=>const Updateprofile(),
     },
     ) ;
     
