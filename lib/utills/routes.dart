@@ -8,4 +8,5 @@ class MyRoutes{
   static String updateprofileRoutes = "/updateprofile";
   static String OpportunityRoutes = "/opportunity";
   static String AboutRoutes = "/about";
+  static String DashBoardRoutes = "/dashboard";
 }

@@ -6,6 +6,7 @@ import  'package:firebase_core/firebase_core.dart';
 import 'pages/opportunitypage.dart';
 import 'pages/searchpage.dart';
 import 'pages/settingpage.dart';
+import 'pages/dashborad.dart';
 
 
 Future main() async {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
              // MyRoutes.HelpRoutes:(context)=> const Helppage(),
               '/opportunity':(context)=>const Opportunitypage(),
             '/search':(context)=>const Searchpage(),
+              '/dashboard':(context) => DashBoard(),
              // MyRoutes.updateprofileRoutes:(context)=>const Updateprofile(),
     },
     ) ;

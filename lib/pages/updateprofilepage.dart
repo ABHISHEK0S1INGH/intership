@@ -1,8 +1,6 @@
-import 'dart:async';
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
+
 class Updateprofile extends StatefulWidget {
   const Updateprofile({Key? key}) : super(key: key);
 
@@ -11,15 +9,20 @@ class Updateprofile extends StatefulWidget {
 }
 
 class _UpdateprofileState extends State<Updateprofile> {
-  UploadTask? task;
-  File? file;
+ //  PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
+
 
     return Scaffold(
       body: Padding(
         padding:  const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
         child: ListView(
+          physics:  ScrollPhysics(
+              parent: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
+          ),
           children: <Widget> [
             nameTextField(),
             const SizedBox(
@@ -45,7 +48,7 @@ class _UpdateprofileState extends State<Updateprofile> {
             const SizedBox(
               height: 20,
             ),
-            Certificate(),
+            imageProfile(),
             const SizedBox(
               height: 20,
             ),
@@ -110,7 +113,6 @@ class _UpdateprofileState extends State<Updateprofile> {
       ),
     );
   }
-
   Widget locationTextField() {
     return TextFormField(
       decoration: const InputDecoration(
@@ -124,7 +126,6 @@ class _UpdateprofileState extends State<Updateprofile> {
       ),
     );
   }
-
   Widget typeTextField() {
     return TextFormField(
       decoration: const InputDecoration(
@@ -138,33 +139,92 @@ class _UpdateprofileState extends State<Updateprofile> {
       ),
     );
   }
+  Widget imageProfile(){
+    return Stack(
+      children:<Widget>[ Container(
+        padding: const EdgeInsets.all(32),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Divider(color: Colors.teal,),
+              const Text(('Upload Certificate'),style: TextStyle(fontWeight: FontWeight.bold,
+                  fontSize: 20.0,color: Colors.teal),),
+              const Padding(padding: EdgeInsets.all(10.0)),
+              const Image(image:
+              AssetImage("images/rec.jpeg"),
 
-  Widget Certificate(){
-   // final fileName = file != null ? basename(file!.path): 'No file slected';
-    return Container(
-      padding: const EdgeInsets.all(32),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(onPressed: (){ selectfile();}, icon: const Icon(Icons.upload),iconSize: 50.0,)
-          ],
+              ),
+              const Padding(padding: EdgeInsets.all(10.0)),
+              IconButton(onPressed: (){
+                showModalBottomSheet(context: context, builder:((builder) => bottomsheet()),
+                );
+              },
+                icon:  const Icon(Icons.upload),iconSize: 50.0,)
+            ],
+          ),
         ),
+      ),
+    ]
+    );
+  }
+  Widget bottomsheet(){
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          const Text('Select file',style: TextStyle(fontSize:20.0),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: [
+                  IconButton(onPressed:(){
+                   // takephoto(ImageSource.camera);
+                  }, icon: const Icon(Icons.camera)),
+                  const Text('Camera'),
+                ],
+              ),
+              Row(
+                children: [
+                  IconButton(onPressed:(){
+                  //  takephoto(ImageSource.gallery);
+                  }, icon: const Icon(Icons.browse_gallery)),
+                  const Text('Files'),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
+//void takephoto(ImageSource source ) async {
+ //   final pickedFile = await _picker.getImage(
+   //   source: source,
+    //);
+ //   setState(() {
+   //   _imageFile = pickedFile;
+  //  });
+//}
 
- Future selectfile()  async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result == null) return;
-    final path = result.files.single.path!;
-    setState(() => file = File(path));
- }
 
 }
 
- Future class UploadTask a{
-}
+
+
+
+
+
 
 
 

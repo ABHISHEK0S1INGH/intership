@@ -68,6 +68,9 @@ class MySearchDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     List<String> suggestions = query.isEmpty? searchResults:searchResults.where((p) => p.startsWith(query)).toList();
     return ListView.builder(
+      physics:  const ScrollPhysics(
+          parent: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
+      ),
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
         final suggestion = suggestions[index];

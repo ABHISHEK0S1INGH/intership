@@ -19,6 +19,9 @@ class _SettingpageState extends State<Settingpage> {
       body: Container(
         padding: EdgeInsets.all(10),
         child:ListView(
+          physics:  const ScrollPhysics(
+              parent: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
+          ),
           children: [
              const SizedBox(
               height: 40,
