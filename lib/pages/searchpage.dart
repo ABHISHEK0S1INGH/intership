@@ -1,15 +1,13 @@
-
 import 'package:flutter/material.dart';
 class Searchpage extends StatelessWidget {
   const Searchpage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        title: Text('Search',
+        title: const Text('Search',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.teal),),
         actions: [
           IconButton(
@@ -20,7 +18,22 @@ class Searchpage extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Image(image: AssetImage("images/srh.png"),
+                ),
+              ),
+              Padding(padding: EdgeInsets.all(10),),
+              Title(color: Colors.black, child: const Text('Rajkiya Engineering College Bijnor',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),textAlign: TextAlign.center,),),
+              Padding(padding: EdgeInsets.all(10),),
+              Image(image: AssetImage('images/RECB_Campus-view.jpg')),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -50,18 +63,18 @@ class MySearchDelegate extends SearchDelegate {
         close(context, null);
       }
       query = '';
-    }, icon: Icon(Icons.clear),);
+    }, icon: const Icon(Icons.clear),);
   }
   @override
   Widget? buildLeading(BuildContext context) {
     IconButton(onPressed: () =>
         close(context, null),
-      icon: Icon(Icons.arrow_back),);
+      icon: const Icon(Icons.arrow_back),);
   }
   @override
   Widget buildResults(BuildContext context) {
     return Center(
-      child:  Text(query,style: TextStyle(fontSize: 64,fontWeight: FontWeight.bold),),
+      child:  Text(query,style: const TextStyle(fontSize: 64,fontWeight: FontWeight.bold),),
     );
   }
   @override
@@ -82,7 +95,9 @@ class MySearchDelegate extends SearchDelegate {
           },
         );
       },
+
     );
+
   }
 }
 

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:recb/pages/microsoft.dart';
+import 'package:recb/pages/tcs.dart';
+import 'package:recb/pages/adobe.dart';
+import 'package:recb/pages/intelpage.dart';
+import 'package:recb/pages/wipro.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -21,23 +26,31 @@ class _DashBoardState extends State<DashBoard> {
          SizedBox(
            height: 230,
            child: Stack(
+
              children: [
+
                Positioned(
                  top:30,
                    left: 20,
                    child: Material(
-                     child: Container(
-                       height: 180,
-                       width: 350,
-                       decoration: BoxDecoration(
-                         color: Colors.grey,
-                         borderRadius: BorderRadius.circular(9.0),
-                        // backgroundBlendMode: BlendMode.dst
-
+                     child: TextButton(
+                       onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return  TcsPage();
+                        })) ;
+                       },
+                       child: Container(
+                         height: 180,
+                         width: 350,
+                         decoration: BoxDecoration(
+                           color: Colors.grey,
+                           borderRadius: BorderRadius.circular(9.0),
+                          // backgroundBlendMode: BlendMode.dst
+                         ),
                        ),
                      ),
-
-               ),),
+               ),
+               ),
                Positioned(
                  top:18,
                  left: 17,
@@ -52,7 +65,7 @@ class _DashBoardState extends State<DashBoard> {
                    width: 150,
                    decoration: BoxDecoration(
                      borderRadius: BorderRadius.circular(10.0),
-                     image: DecorationImage(
+                     image: const DecorationImage(
                        fit: BoxFit.fill,
                        image: AssetImage('images/TCS.png'),
                      )
@@ -88,14 +101,21 @@ class _DashBoardState extends State<DashBoard> {
                  top:30,
                  left: 20,
                  child: Material(
-                   child: Container(
-                     height: 180,
-                     width: 350,
-                     decoration: BoxDecoration(
-                       color: Colors.grey,
-                       borderRadius: BorderRadius.circular(9.0),
-                       // backgroundBlendMode: BlendMode.dst
+                   child: TextButton(
+                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return adobepage();
+                      }));
+                     },
+                     child: Container(
+                       height: 180,
+                       width: 350,
+                       decoration: BoxDecoration(
+                         color: Colors.grey,
+                         borderRadius: BorderRadius.circular(9.0),
+                         // backgroundBlendMode: BlendMode.dst
 
+                       ),
                      ),
                    ),
 
@@ -104,12 +124,14 @@ class _DashBoardState extends State<DashBoard> {
                  top:18,
                  left: 17,
                  child: Card(
+
                    elevation: 10.0,
                    shadowColor: Colors.grey.withOpacity(0.5),
                    shape: RoundedRectangleBorder(
                      borderRadius: BorderRadius.circular(15),
                    ),
                    child: Container(
+
                      height: 200,
                      width: 150,
                      decoration: BoxDecoration(
@@ -150,14 +172,20 @@ class _DashBoardState extends State<DashBoard> {
                  top:30,
                  left: 20,
                  child: Material(
-                   child: Container(
-                     height: 180,
-                     width: 350,
-                     decoration: BoxDecoration(
-                       color: Colors.grey,
-                       borderRadius: BorderRadius.circular(9.0),
-                       // backgroundBlendMode: BlendMode.dst
 
+                   child: TextButton(
+                     onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context){
+                       return IntelPage();
+                     })); },
+                     child: Container(
+                       height: 180,
+                       width: 350,
+                       decoration: BoxDecoration(
+                         color: Colors.grey,
+                         borderRadius: BorderRadius.circular(9.0),
+                         // backgroundBlendMode: BlendMode.dst
+
+                       ),
                      ),
                    ),
 
@@ -212,14 +240,19 @@ class _DashBoardState extends State<DashBoard> {
                  top:30,
                  left: 20,
                  child: Material(
-                   child: Container(
-                     height: 180,
-                     width: 350,
-                     decoration: BoxDecoration(
-                       color: Colors.grey,
-                       borderRadius: BorderRadius.circular(9.0),
-                       // backgroundBlendMode: BlendMode.dst
+                   child: TextButton(
+                     onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context){
+                       return MicrosoftPage();
+                     })); },
+                     child: Container(
+                       height: 180,
+                       width: 350,
+                       decoration: BoxDecoration(
+                         color: Colors.grey,
+                         borderRadius: BorderRadius.circular(9.0),
+                         // backgroundBlendMode: BlendMode.dst
 
+                       ),
                      ),
                    ),
 
@@ -274,14 +307,21 @@ class _DashBoardState extends State<DashBoard> {
                  top:30,
                  left: 20,
                  child: Material(
-                   child: Container(
-                     height: 180,
-                     width: 350,
-                     decoration: BoxDecoration(
-                       color: Colors.grey,
-                       borderRadius: BorderRadius.circular(9.0),
-                       // backgroundBlendMode: BlendMode.dst
+                   child: TextButton(
+                     onPressed: () {
+                       Navigator.push(context, MaterialPageRoute(builder: (context){
+                         return Wipropage();
+                       }));
+                     },
+                     child: Container(
+                       height: 180,
+                       width: 350,
+                       decoration: BoxDecoration(
+                         color: Colors.grey,
+                         borderRadius: BorderRadius.circular(9.0),
+                         // backgroundBlendMode: BlendMode.dst
 
+                       ),
                      ),
                    ),
 
