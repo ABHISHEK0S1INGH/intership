@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:recb/pages/homepage.dart';
+
 
 class Updateprofile extends StatefulWidget {
   const Updateprofile({Key? key}) : super(key: key);
@@ -10,7 +15,18 @@ class Updateprofile extends StatefulWidget {
 
 class _UpdateprofileState extends State<Updateprofile> {
  //  PickedFile _imageFile;
+  PlatformFile? pickedFile;
+  Future selectFile() async {
+    final result = await FilePicker.platform.pickFiles();
+  }
+
   final ImagePicker _picker = ImagePicker();
+  final controller = TextEditingController();
+  final controllerAge = TextEditingController();
+  final controllerdate = TextEditingController();
+  final controllertecnology = TextEditingController();
+  final controllerlocation = TextEditingController();
+  final controllertype = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +36,7 @@ class _UpdateprofileState extends State<Updateprofile> {
       body: Padding(
         padding:  const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
         child: ListView(
-          physics:  ScrollPhysics(
+          physics:  const ScrollPhysics(
               parent: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
           ),
           children: <Widget> [
@@ -52,6 +68,10 @@ class _UpdateprofileState extends State<Updateprofile> {
             const SizedBox(
               height: 20,
             ),
+            Update(),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),
@@ -60,6 +80,13 @@ class _UpdateprofileState extends State<Updateprofile> {
 
   Widget nameTextField(){
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "can't be empty ";
+        }
+        return null;
+      },
+      controller: controller,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -74,6 +101,14 @@ class _UpdateprofileState extends State<Updateprofile> {
 
   Widget companyTextField() {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "can't be empty ";
+        }
+        return null;
+      },
+
+      controller: controllerAge,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -88,6 +123,13 @@ class _UpdateprofileState extends State<Updateprofile> {
 
   Widget durationTextField() {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "can't be empty ";
+        }
+        return null;
+      },
+      controller: controllerdate,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -102,6 +144,13 @@ class _UpdateprofileState extends State<Updateprofile> {
 
   Widget technologyTextField() {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "can't be empty ";
+        }
+        return null;
+      },
+      controller: controllertecnology,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -115,6 +164,13 @@ class _UpdateprofileState extends State<Updateprofile> {
   }
   Widget locationTextField() {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "can't be empty ";
+        }
+        return null;
+      },
+      controller: controllerlocation,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -128,6 +184,14 @@ class _UpdateprofileState extends State<Updateprofile> {
   }
   Widget typeTextField() {
     return TextFormField(
+      obscureText: true,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "can't be empty ";
+        }
+        return null;
+      },
+      controller: controllertype,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -140,84 +204,108 @@ class _UpdateprofileState extends State<Updateprofile> {
     );
   }
   Widget imageProfile(){
-    return Stack(
-      children:<Widget>[ Container(
-        padding: const EdgeInsets.all(32),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Divider(color: Colors.teal,),
-              const Text(('Upload Certificate'),style: TextStyle(fontWeight: FontWeight.bold,
-                  fontSize: 20.0,color: Colors.teal),),
-              const Padding(padding: EdgeInsets.all(10.0)),
-              const Image(image:
-              AssetImage("images/rec.jpeg"),
-
+    return Container(
+      padding: const EdgeInsets.all(32),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (pickedFile != null)
+              Expanded(
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  color: Colors.black,
+                  child: Image.file(File(pickedFile!.path!),
+                    width: double.infinity,
+                    fit: BoxFit.cover,),
+                ),
               ),
-              const Padding(padding: EdgeInsets.all(10.0)),
-              IconButton(onPressed: (){
-                showModalBottomSheet(context: context, builder:((builder) => bottomsheet()),
-                );
-              },
-                icon:  const Icon(Icons.upload),iconSize: 50.0,)
-            ],
-          ),
+          const Divider(color: Colors.teal,),
+            const Text(('Upload Certificate'),style: TextStyle(fontWeight: FontWeight.bold,
+               fontSize: 20.0,color: Colors.teal),),
+            SizedBox(height: 32),
+            IconButton(onPressed:  selectFile,
+              icon:  const Icon(Icons.upload),iconSize: 50.0,),
+            const Text("Tap The Icon To Upload File"),
+          ],
         ),
       ),
-    ]
     );
   }
-  Widget bottomsheet(){
-    return Container(
-      height: 100.0,
-      width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
+  Widget Update() {
+    return  Container(
       child: Column(
-        children: <Widget>[
-          const Text('Select file',style: TextStyle(fontSize:20.0),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                children: [
-                  IconButton(onPressed:(){
-                   // takephoto(ImageSource.camera);
-                  }, icon: const Icon(Icons.camera)),
-                  const Text('Camera'),
+        children: [
+          TextButton(onPressed: (){
+            final user = User(
+              name : controller.text,
+              company: (controllerAge.text),
+              duration:(controllerdate.text),
+              tecnology: controllertecnology.text,
+              location: controllerlocation.text,
+              type: controllertype.text,
+            );
+            createUser(user);
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                title: const Text('Data Uploaded'),
+                content: const Text('Congratulations Internship data uploaded succesfully'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Back'),
+                    child: const Text('Back'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return HomePage();
+                    })),
+                    child: const Text('OK'),
+                  ),
                 ],
               ),
-              Row(
-                children: [
-                  IconButton(onPressed:(){
-                  //  takephoto(ImageSource.gallery);
-                  }, icon: const Icon(Icons.browse_gallery)),
-                  const Text('Files'),
-                ],
-              ),
-            ],
-          ),
+            );
+          }, child: const Icon(Icons.cloud_done,size: 50,),),
+          const Text("Tap The Icon To Finish"),
+          const Divider(color: Colors.tealAccent,)
         ],
       ),
     );
   }
-//void takephoto(ImageSource source ) async {
- //   final pickedFile = await _picker.getImage(
-   //   source: source,
-    //);
- //   setState(() {
-   //   _imageFile = pickedFile;
-  //  });
-//}
-
-
+  Future createUser(User user ) async {
+    final docUser = FirebaseFirestore.instance.collection('users').doc();
+    user.id = docUser.id;
+    final json = user.toJson();
+    await docUser.set(json);
+  }
+}
+class User {
+  String id;
+  final String name;
+  final String company;
+  final String duration;
+  final String tecnology;
+  final String location;
+  final String type;
+   User ({
+    this.id ='',
+    required this.name,
+     required this.company,
+     required this.duration,
+     required this.tecnology,
+     required this.location,
+     required this.type,
+});
+   Map<String, dynamic> toJson() =>
+       {
+         'id': id,
+         'name': name,
+         'company': company,
+         'duration': duration,
+         'technology': tecnology,
+         'type':type,
+       };
 }
 
 
